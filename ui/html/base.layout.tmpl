@@ -24,7 +24,11 @@
     <body>
     <nav class="navBar">
         <div class="nav-wrapper">
+            {{if .IsAuthenticated}}
+            <a href="/todos" id="logo">Todos</a>
+            {{else}}
             <a href="/" id="logo">Todos</a>
+            {{end}}
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 {{if .IsAuthenticated}}
