@@ -139,8 +139,6 @@ nav form {
     flex-direction: column;
     padding-top: 0;
     margin-top: 0;
-    padding-left: 30rem;
-    padding-right: 30rem;
     justify-content: center;
 }
 
@@ -221,4 +219,9 @@ div.flash {
 
 input.checkbox {
     display: inline-block;
+}
+
+.noTodosContainer {
+    display: flex;
+    justify-content: center;
 }

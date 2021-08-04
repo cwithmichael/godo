@@ -5,13 +5,14 @@ import (
 	"cwithmichael/todo/pkg/models/mysql"
 	"database/sql"
 	"flag"
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/golangcollege/sessions"
 	"html/template"
 	"log"
 	"net/http"
 	"os"
 	"time"
+
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/golangcollege/sessions"
 )
 
 type contextKey string
@@ -24,12 +25,12 @@ type application struct {
 	session       *sessions.Session
 	todos         *mysql.TodoModel
 	templateCache map[string]*template.Template
-	users *mysql.UserModel
+	users         *mysql.UserModel
 }
 
 func main() {
 	addr := flag.String("addr", ":4000", "HTTP network address")
-	dsn := flag.String("dsn", "web:devpassword@/todos?parseTime=true", "MySQL data source name")
+	dsn := flag.String("dsn", "web:flash007@/todos?parseTime=true", "MySQL data source name")
 	secret := flag.String("secret", "s6Ndh+pPbnzHbS*+9Pk8qGWhTzbpa@ge", "Secret key")
 	flag.Parse()
 
@@ -58,7 +59,7 @@ func main() {
 		session:       session,
 		todos:         &mysql.TodoModel{DB: db},
 		templateCache: templateCache,
-		users: &mysql.UserModel{DB: db},
+		users:         &mysql.UserModel{DB: db},
 	}
 
 	tlsConfig := &tls.Config{
@@ -67,10 +68,10 @@ func main() {
 	}
 
 	srv := &http.Server{
-		Addr:      *addr,
-		ErrorLog:  errorLog,
-		Handler:   app.routes(),
-		TLSConfig: tlsConfig,
+		Addr:         *addr,
+		ErrorLog:     errorLog,
+		Handler:      app.routes(),
+		TLSConfig:    tlsConfig,
 		IdleTimeout:  time.Minute,
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,

@@ -10,16 +10,19 @@ import (
 
 type templateData struct {
 	CSRFToken       string
-	CurrentYear int
-	Flash string
-	Form *forms.Form
+	CurrentYear     int
+	Flash           string
+	Form            *forms.Form
 	IsAuthenticated bool
-	Todo *models.Todo
-	Todos []*models.Todo
+	Todo            *models.Todo
+	Todos           []*models.Todo
 }
 
 func humanDate(t time.Time) string {
-	return t.Format("Jan 02 2006 at 15:04")
+	if t.IsZero() {
+		return ""
+	}
+	return t.UTC().Format("Jan 02 2006 at 15:04")
 }
 
 var functions = template.FuncMap{

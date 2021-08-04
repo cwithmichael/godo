@@ -1,6 +1,5 @@
 CREATE DATABASE todos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- Switch to using the `snippetbox` database.
 USE todos;
 
 CREATE TABLE user (
@@ -25,5 +24,4 @@ CREATE TABLE todo (
                           FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
--- Add an index on the created column.
 CREATE INDEX idx_todo_created ON todo(created);
