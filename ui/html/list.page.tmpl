@@ -1,0 +1,27 @@
+{{template "base" .}}
+{{define "title"}}Todos{{end}}
+{{define "main"}}
+    <h1 class="mainTitle">Todo List</h1>
+    {{if .Todos}}
+        <div class="todoListContainer">
+            <table class="highlight centered">
+                <tr>
+                    <th>Title</th>
+                    <th>Created</th>
+                    <th>Completed</th>
+                    <th>ID</th>
+                </tr>
+                {{range .Todos}}
+                    <tr>
+                        <td><a href="/todo/{{.ID}}">{{.Title}}</a></td>
+                        <td>{{.Created | humanDate}}</td>
+                        <td>{{.Completed}}</td>
+                        <td>#{{.ID}}</td>
+                    </tr>
+                {{end}}
+            </table>
+        </div>
+    {{else}}
+        <p class="noTodos"> No todos yet</p>
+    {{end}}
+{{end}}

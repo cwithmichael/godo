@@ -1,0 +1,224 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: white;
+    height: 100%;
+}
+
+h1 {
+    text-align: center;
+}
+
+.mainTitle {
+    color: #060D37;
+    padding-bottom: 1rem;
+}
+
+.navBar {
+    background-color: #060D37;
+}
+
+#logo {
+    font-size: 4rem;
+    font-family: "Bradley Hand";
+}
+
+.navBar a {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.navBar a:hover {
+    color: #4EB722;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+nav form {
+    display: inline-block;
+}
+
+.logoutButton {
+    color: white;
+    font-size: 1.5rem;
+    font-family: inherit;
+    background: none;
+    margin-top: 1.1rem;
+    margin-left: 0;
+    border: none;
+    text-decoration: none;
+}
+
+.logoutButton:hover {
+    color: #4EB722;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.nav-wrapper {
+    color: black;
+}
+
+.card-title {
+    border-bottom: 1px solid black;
+}
+
+.landingTitle {
+    margin-bottom: 3rem;
+    animation: 3s ease-in slidein;
+}
+
+@keyframes slidein { from { margin-left: -200%; } to { margin-left: 0%; }  }
+
+.helloContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    align-items: center;
+}
+
+.helloContainer a {
+    color: #060D37;
+}
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    align-items: center;
+}
+
+.formContainer form {
+    background-color: white;
+    padding: 2rem;
+    width: 60%;
+}
+
+.formContainer label {
+    color: black;
+}
+
+.todoListContainer {
+    display: flex;
+    margin-top: 3rem;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.todoListContainer a {
+    color: rebeccapurple;
+    font-style: italic;
+}
+
+.todoListContainer a:hover {
+    color: black;
+}
+
+.todoListContainer table {
+    background-color: white;
+    padding: 2rem;
+    border: 1px solid rebeccapurple;
+    font-size: 1.5rem;
+}
+
+.todoListContainer table th {
+    color: black;
+    border-bottom: 1px solid rebeccapurple;
+    text-align: center;
+}
+
+.todoListContainer table tr {
+    color: black;
+}
+
+.addTodoButton {
+    margin-top: 3rem;
+    color: white;
+}
+
+.todoContainer {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    margin-top: 0;
+    padding-left: 30rem;
+    padding-right: 30rem;
+    justify-content: center;
+}
+
+.todoContent {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+    font-size: 1.5rem;
+}
+
+.todoButtons{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#todoTitle {
+    color: black;
+    text-align: center;
+    font-size: 3rem;
+    border-bottom: 1px solid white;
+}
+
+#todoCreated {
+    color:#4EB722 ;
+}
+
+
+#todoNotes {
+    color: black;
+}
+
+.todoCompleted {
+    color: #4EB722;
+}
+
+.todoNotCompleted {
+    color: indianred;
+}
+
+.noTodos {
+    text-align: center;
+    font-size: 2rem;
+}
+
+
+div.flash {
+    color: #FFFFFF;
+    font-weight: bold;
+    background-color: plum;
+    padding: 18px;
+    margin-bottom: 36px;
+    text-align: center;
+}
+
+.error {
+    color: #C0392B;
+    font-weight: bold;
+    display: block;
+}
+
+.error + textarea, .error + input {
+    border-color: #C0392B !important;
+    border-width: 2px !important;
+}
+
+
+.page-footer {
+    position: fixed;
+    height: 4rem;
+    margin-top: -4rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #060D37;
+}
+
+input.checkbox {
+    display: inline-block;
+}

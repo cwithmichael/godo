@@ -1,0 +1,39 @@
+{{template "base" .}}
+
+{{define "title"}}Edit Todo{{end}}
+
+{{define "main"}}
+    <h1 class="mainTitle">Edit Todo</h1>
+        {{if .Todo}}
+    <div class="formContainer">
+        <form action='/todo/edit/{{.Todo.ID}}' method='POST'>
+            <input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
+            <div>
+                    <label for="title">Title:</label>
+                    {{with .Form.Errors.Get "title"}}
+                        <label class="error">{{.}}</label>
+                    {{end}}
+                    <input id="title" class="input-field validate" type='text' name='title' value='{{.Todo.Title}}'>
+                </div>
+                <div>
+                    <label for="content">Todo Description:</label>
+                    {{with .Form.Errors.Get "content"}}
+                        <label class='error' for="content">{{.}}</label>
+                    {{end}}
+                    <input id="content" class="input-field validate" type='text' name='content' value="{{.Todo.Content}}">
+                </div>
+                <div>
+                    <p>
+                        <label>
+                            <input name="completed" type="checkbox" {{if .Todo.Completed}}checked="checked"{{end}} />
+                            <span>Completed</span>
+                        </label>
+                    </p>
+                </div>
+                <div>
+                    <input class="btn purple white-text addTodoButton" type='submit' value='Update todo'>
+                </div>
+        </form>
+    </div>
+        {{end}}
+{{end}}

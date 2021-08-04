@@ -1,0 +1,30 @@
+{{template "base" .}}
+
+{{define "title"}}Todo - {{.Todo.Title}}{{end}}
+
+{{define "main"}}
+    {{with .Todo}}
+        <h1 class="mainTitle">{{.Title}}</h1>
+        <div class="todoContainer">
+            <div class="todo">
+                <div class="todoContent">
+                    <p id="todoCreated">
+                        <time> {{.Created | humanDate}}</time>
+                    </p>
+                    <p id="todoNotes">
+                        {{.Content}}
+                    </p>
+                    {{if .Completed}}
+                        <p class="todoCompleted">Completed!</p>
+                    {{else}}
+                        <p class="todoNotCompleted">Not completed yet</p>
+                    {{end}}
+                </div>
+                <div class="todoButtons">
+                    <a href="/todo/edit/{{.ID}}" class="btn purple white-text addTodoButton">Edit</a>
+                    <a href="/todo/delete/{{.ID}}" class="btn purple white-text addTodoButton">Delete</a>
+                </div>
+            </div>
+        </div>
+    {{end}}
+{{end}}

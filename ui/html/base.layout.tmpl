@@ -1,0 +1,57 @@
+{{define "base"}}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>{{template "title" .}} - Todos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!--Import Google Icon Font-->
+        <link
+                href="https://fonts.googleapis.com/icon?family=Material+Icons"
+                rel="stylesheet"
+        />
+        <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/app.css"/>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script defer src="/static/js/app.js" type="module"></script>
+    </head>
+    <body>
+    <nav class="navBar">
+        <div class="nav-wrapper">
+            <a href="/" id="logo">Todos</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                {{if .IsAuthenticated}}
+                    <li><a href="/todo/create">Add Todo</a></li>
+                    <li><a href="/todos">Show Todos</a></li>
+                {{end}}
+                {{if not .IsAuthenticated}}
+                    <li><a href="/user/register">Register</a></li>
+                    <li><a href="/user/login">Login</a></li>
+                {{end}}
+                {{if .IsAuthenticated}}
+                    <li>
+                        <form action="/user/logout" method="POST">
+                            <input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
+                            <button class="logoutButton">Logout</button>
+                        </form>
+                    </li>
+                {{end}}
+            </ul>
+        </div>
+    </nav>
+    <main>
+        {{with .Flash}}
+            <div class='flash'>{{.}}</div>
+        {{end}}
+        {{template "main" .}}
+    </main>
+    {{template "footer" .}}
+    </body>
+    </html>
+{{end}}

@@ -1,0 +1,38 @@
+{{template "base" .}}
+
+{{define "title"}}Signup{{end}}
+
+{{define "main"}}
+    <h1 class="mainTitle">Register</h1>
+    <div class="formContainer">
+        <form action='/user/register' method='POST' novalidate>
+            <input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
+            {{with .Form}}
+                <div>
+                    <label><h5>Name:</h5></label>
+                    {{with .Errors.Get "name"}}
+                        <label class='error'>{{.}}</label>
+                    {{end}}
+                    <input type='text' name='name' value='{{.Get "name"}}'>
+                </div>
+                <div>
+                    <label><h5>Email:</h5></label>
+                    {{with .Errors.Get "email"}}
+                        <label class='error'>{{.}}</label>
+                    {{end}}
+                    <input type='email' name='email' value='{{.Get "email"}}'>
+                </div>
+                <div>
+                    <label><h5>Password:</h5></label>
+                    {{with .Errors.Get "password"}}
+                        <label class='error'>{{.}}</label>
+                    {{end}}
+                    <input type='password' name='password'>
+                </div>
+                <div>
+                    <input type='submit' class="btn purple white-text addTodoButton" value='Signup'>
+                </div>
+            {{end}}
+        </form>
+    </div>
+{{end}}
