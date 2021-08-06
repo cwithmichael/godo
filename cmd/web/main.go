@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/tls"
+	"cwithmichael/todo/pkg/models"
 	"cwithmichael/todo/pkg/models/mysql"
 	"database/sql"
 	"flag"
@@ -20,12 +21,22 @@ type contextKey string
 const contextKeyIsAuthenticated = contextKey("isAuthenticated")
 
 type application struct {
-	errorLog      *log.Logger
-	infoLog       *log.Logger
-	session       *sessions.Session
-	todos         *mysql.TodoModel
+	errorLog *log.Logger
+	infoLog  *log.Logger
+	session  *sessions.Session
+	todos    interface {
+		Insert(string, string, int) (int, error)
+		Get(int) (*models.Todo, error)
+		Latest(int) ([]*models.Todo, error)
+		Update(int, string, string, bool) error
+		Delete(int) error
+	}
 	templateCache map[string]*template.Template
-	users         *mysql.UserModel
+	users         interface {
+		Insert(string, string, string) error
+		Authenticate(string, string) (int, error)
+		Get(int) (*models.User, error)
+	}
 }
 
 func main() {
