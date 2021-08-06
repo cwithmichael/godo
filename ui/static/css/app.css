@@ -63,7 +63,12 @@ nav form {
 
 .landingTitle {
     margin-bottom: 3rem;
-    animation: 3s ease-in slidein;
+}
+
+@media screen and (min-width: 1376px) {
+    .landingTitle {
+        animation: 3s ease-in slidein;
+    }
 }
 
 @keyframes slidein { from { margin-left: -200%; } to { margin-left: 0%; }  }
