@@ -1,7 +1,6 @@
 package main
 
 import (
-	"crypto/tls"
 	"cwithmichael/todo/pkg/models"
 	"cwithmichael/todo/pkg/models/mysql"
 	"database/sql"
@@ -18,7 +17,10 @@ import (
 
 type contextKey string
 
-const contextKeyIsAuthenticated = contextKey("isAuthenticated")
+const (
+	contextKeyIsAuthenticated = contextKey("isAuthenticated")
+	retries                   = 10
+)
 
 type application struct {
 	errorLog *log.Logger
@@ -41,16 +43,24 @@ type application struct {
 
 func main() {
 	addr := flag.String("addr", ":4000", "HTTP network address")
-	dsn := flag.String("dsn", "web:flash007@/todos?parseTime=true", "MySQL data source name")
+	dsn := flag.String("dsn", "root:root@tcp(db)/todos?parseTime=true", "MySQL data source name")
 	secret := flag.String("secret", "s6Ndh+pPbnzHbS*+9Pk8qGWhTzbpa@ge", "Secret key")
 	flag.Parse()
 
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
-
 	db, err := openDB(*dsn)
 	if err != nil {
-		errorLog.Fatal(err)
+		for i := 0; i < retries; i++ {
+			db, err = openDB(*dsn)
+			if err == nil {
+				break
+			}
+			time.Sleep(3 * time.Second)
+		}
+		if err != nil {
+			errorLog.Fatal(err)
+		}
 	}
 
 	defer db.Close()
@@ -73,23 +83,17 @@ func main() {
 		users:         &mysql.UserModel{DB: db},
 	}
 
-	tlsConfig := &tls.Config{
-		PreferServerCipherSuites: true,
-		CurvePreferences:         []tls.CurveID{tls.X25519, tls.CurveP256},
-	}
-
 	srv := &http.Server{
 		Addr:         *addr,
 		ErrorLog:     errorLog,
 		Handler:      app.routes(),
-		TLSConfig:    tlsConfig,
 		IdleTimeout:  time.Minute,
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
 
 	infoLog.Printf("Starting server on %s\n", *addr)
-	err = srv.ListenAndServeTLS("./tls/cert.pem", "./tls/key.pem")
+	err = srv.ListenAndServe()
 	errorLog.Fatal(err)
 }
 
