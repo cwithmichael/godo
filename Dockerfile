@@ -1,3 +1,4 @@
+# Build
 FROM golang:1.16-alpine AS build
 WORKDIR /go/src/app
 
@@ -6,7 +7,7 @@ RUN go mod download
 
 RUN go build -o /godo ./cmd/web 
 
-# Deploy
+# Run
 FROM alpine:latest
 COPY --from=build /godo /godo
 COPY --from=build /go/src/app/ui /ui
