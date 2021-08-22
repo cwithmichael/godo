@@ -8,6 +8,7 @@ import (
 	"unicode/utf8"
 )
 
+//EmailRX is a regex pattern to validate email addresses
 var EmailRX = regexp.MustCompile("^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
 
 // Form struct, which anonymously embeds a url.Values object

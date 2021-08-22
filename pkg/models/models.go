@@ -6,11 +6,15 @@ import (
 )
 
 var (
-	ErrNoRecord           = errors.New("models: no matching record found")
+	//ErrNoRecord is returned with no matching records are found
+	ErrNoRecord = errors.New("models: no matching record found")
+	//ErrInvalidCredentials is returned when the user provides bad creds
 	ErrInvalidCredentials = errors.New("models: invalid credentials")
-	ErrDuplicateEmail     = errors.New("models: duplicate email")
+	//ErrDuplicateEmail is returned whe na user tries to provide an email that's in use
+	ErrDuplicateEmail = errors.New("models: duplicate email")
 )
 
+//Todo represents a todo object in the app
 type Todo struct {
 	ID             int
 	Title          string
@@ -21,6 +25,7 @@ type Todo struct {
 	UserID         int
 }
 
+//User represents a user of the app
 type User struct {
 	ID             int
 	Name           string
