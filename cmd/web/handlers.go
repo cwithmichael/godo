@@ -14,8 +14,8 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) showTodos(w http.ResponseWriter, r *http.Request) {
-	userId := app.session.GetInt(r, "authenticatedUserID")
-	t, err := app.todos.Latest(userId)
+	userID := app.session.GetInt(r, "authenticatedUserID")
+	t, err := app.todos.Latest(userID)
 	if err != nil {
 		app.serverError(w, err)
 		return
@@ -141,8 +141,8 @@ func (app *application) addTodo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	userId := app.session.GetInt(r, "authenticatedUserID")
-	id, err := app.todos.Insert(form.Get("title"), form.Get("content"), userId)
+	userID := app.session.GetInt(r, "authenticatedUserID")
+	id, err := app.todos.Insert(form.Get("title"), form.Get("content"), userID)
 	if err != nil {
 		app.serverError(w, err)
 		return

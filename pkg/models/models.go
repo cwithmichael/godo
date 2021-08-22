@@ -6,26 +6,26 @@ import (
 )
 
 var (
-	ErrNoRecord = errors.New("models: no matching record found")
+	ErrNoRecord           = errors.New("models: no matching record found")
 	ErrInvalidCredentials = errors.New("models: invalid credentials")
-	ErrDuplicateEmail = errors.New("models: duplicate email")
+	ErrDuplicateEmail     = errors.New("models: duplicate email")
 )
 
 type Todo struct {
-	ID            int
-	Title         string
-	Content       string
-	Created       time.Time
+	ID             int
+	Title          string
+	Content        string
+	Created        time.Time
 	CompletionDate time.Time
-	Completed     bool
-	UserID int
+	Completed      bool
+	UserID         int
 }
 
 type User struct {
-	ID int
-	Name string
-	Email string
+	ID             int
+	Name           string
+	Email          string
 	HashedPassword []byte
-	Created time.Time
-	Active bool
+	Created        time.Time
+	Active         bool
 }
