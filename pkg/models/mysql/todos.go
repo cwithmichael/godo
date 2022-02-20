@@ -1,7 +1,7 @@
 package mysql
 
 import (
-	"cwithmichael/todo/pkg/models"
+	"github.com/cwithmichael/godo/pkg/models"
 	"database/sql"
 	"errors"
 )

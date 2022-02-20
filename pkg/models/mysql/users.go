@@ -8,7 +8,7 @@ import (
 	"github.com/go-sql-driver/mysql"
 	"golang.org/x/crypto/bcrypt"
 
-	"cwithmichael/todo/pkg/models"
+	"github.com/cwithmichael/godo/pkg/models"
 )
 
 // UserModel is used to interact with our datastore

@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"cwithmichael/todo/pkg/models"
+	"github.com/cwithmichael/godo/pkg/models"
 	"errors"
 	"fmt"
 	"github.com/justinas/nosurf"

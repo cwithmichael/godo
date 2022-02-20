@@ -1,8 +1,8 @@
 package main
 
 import (
-	"cwithmichael/todo/pkg/forms"
-	"cwithmichael/todo/pkg/models"
+	"github.com/cwithmichael/godo/pkg/forms"
+	"github.com/cwithmichael/godo/pkg/models"
 	"errors"
 	"fmt"
 	"net/http"

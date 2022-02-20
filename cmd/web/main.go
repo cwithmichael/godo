@@ -1,8 +1,8 @@
 package main
 
 import (
-	"cwithmichael/todo/pkg/models"
-	"cwithmichael/todo/pkg/models/mysql"
+	"github.com/cwithmichael/godo/pkg/models"
+	"github.com/cwithmichael/godo/pkg/models/mysql"
 	"database/sql"
 	"flag"
 	"html/template"
