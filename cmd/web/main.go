@@ -11,7 +11,7 @@ import (
 	"os"
 	"time"
 
-	_ "github.com/go-sql-driver/mysql"
+  _ "github.com/mattn/go-sqlite3"
 	"github.com/golangcollege/sessions"
 )
 
@@ -43,7 +43,7 @@ type application struct {
 
 func main() {
 	addr := flag.String("addr", ":4000", "HTTP network address")
-	dsn := flag.String("dsn", "root:root@tcp(db)/todos?parseTime=true", "MySQL data source name")
+  dsn := flag.String("dsn", "./test.db", "Sqlite data source name")
 	secret := flag.String("secret", "s6Ndh+pPbnzHbS*+9Pk8qGWhTzbpa@ge", "Secret key")
 	flag.Parse()
 
@@ -98,7 +98,7 @@ func main() {
 }
 
 func openDB(dsn string) (*sql.DB, error) {
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("sqlite3", dsn)
 	if err != nil {
 		return nil, err
 	}

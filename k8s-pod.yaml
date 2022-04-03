@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: godo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: godo
+  template:
+    metadata:
+      labels:
+        app: godo
+    spec:
+      containers:
+        - name: godo
+          image: cwithmichael/godo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: godo-srv
+spec:
+  selector:
+    app: godo
+  ports:
+    - name: godo
+      protocol: TCP
+      port: 4000
+      targetPort: 4000

@@ -4,6 +4,7 @@ WORKDIR /go/src/app
 
 COPY . .
 RUN go mod download
+RUN apk add --update gcc musl-dev
 
 RUN go build -o /godo ./cmd/web 
 

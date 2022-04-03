@@ -8,5 +8,6 @@ require (
 	github.com/golangcollege/sessions v1.2.0
 	github.com/justinas/alice v1.2.0
 	github.com/justinas/nosurf v1.1.1
+	github.com/mattn/go-sqlite3 v1.14.12 // indirect
 	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97
 )
