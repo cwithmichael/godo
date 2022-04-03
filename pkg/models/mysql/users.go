@@ -5,7 +5,6 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/go-sql-driver/mysql"
 	"golang.org/x/crypto/bcrypt"
 
 	"github.com/cwithmichael/godo/pkg/models"
@@ -28,11 +27,8 @@ func (m *UserModel) Insert(name, email, password string) error {
 
 	_, err = m.DB.Exec(stmt, name, email, string(hashedPassword))
 	if err != nil {
-		var mySQLError *mysql.MySQLError
-		if errors.As(err, &mySQLError) {
-			if mySQLError.Number == 1062 && strings.Contains(mySQLError.Message, "user_uc_email") {
-				return models.ErrDuplicateEmail
-			}
+		if strings.Contains(err.Error(), "UNIQUE constraint failed") {
+			return models.ErrDuplicateEmail
 		}
 		return err
 	}
