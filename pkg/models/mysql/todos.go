@@ -14,7 +14,7 @@ type TodoModel struct {
 // Insert a new todo into the database.
 func (m *TodoModel) Insert(title, content string, userID int) (int, error) {
 	stmt := `INSERT INTO todo (title, content, created, completed, user_id)
-			VALUES(?, ?, UTC_TIMESTAMP(), ?, ?)`
+			VALUES(?, ?, datetime('now'), ?, ?)`
 
 	result, err := m.DB.Exec(stmt, title, content, false, userID)
 	if err != nil {

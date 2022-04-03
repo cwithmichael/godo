@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+  "os/exec"
 	"time"
 
   _ "github.com/mattn/go-sqlite3"
@@ -43,12 +44,17 @@ type application struct {
 
 func main() {
 	addr := flag.String("addr", ":4000", "HTTP network address")
-  dsn := flag.String("dsn", "./test.db", "Sqlite data source name")
+  dsn := flag.String("dsn", "./todos.db", "Sqlite data source name")
 	secret := flag.String("secret", "s6Ndh+pPbnzHbS*+9Pk8qGWhTzbpa@ge", "Secret key")
 	flag.Parse()
 
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+  // Load DB
+  cmd := exec.Command("sqlite3", "-init", "todos.sql", "todos.db")
+  if err := cmd.Run(); err != nil {
+    errorLog.Fatal("Failed running DB script", err)
+  }
 	db, err := openDB(*dsn)
 	if err != nil {
 		for i := 0; i < retries; i++ {
