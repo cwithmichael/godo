@@ -3,13 +3,13 @@ package main
 import (
 	"database/sql"
 	"flag"
-	"github.com/cwithmichael/godo/pkg/models"
-	"github.com/cwithmichael/godo/pkg/models/mysql"
 	"html/template"
 	"log"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/cwithmichael/godo/pkg/models/mysql"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/golangcollege/sessions"
@@ -23,22 +23,12 @@ const (
 )
 
 type application struct {
-	errorLog *log.Logger
-	infoLog  *log.Logger
-	session  *sessions.Session
-	todos    interface {
-		Insert(string, string, int) (int, error)
-		Get(int) (*models.Todo, error)
-		Latest(int) ([]*models.Todo, error)
-		Update(int, string, string, bool) error
-		Delete(int) error
-	}
+	errorLog      *log.Logger
+	infoLog       *log.Logger
+	session       *sessions.Session
+	todos         *mysql.TodoModel
 	templateCache map[string]*template.Template
-	users         interface {
-		Insert(string, string, string) error
-		Authenticate(string, string) (int, error)
-		Get(int) (*models.User, error)
-	}
+	users         *mysql.UserModel
 }
 
 func main() {
