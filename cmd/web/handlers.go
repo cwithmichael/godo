@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/cwithmichael/godo/pkg/forms"
-	"github.com/cwithmichael/godo/pkg/models"
 	"errors"
 	"fmt"
+	"github.com/cwithmichael/godo/pkg/forms"
+	"github.com/cwithmichael/godo/pkg/models"
 	"net/http"
 	"strconv"
 )

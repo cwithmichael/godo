@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/cwithmichael/godo/pkg/models"
-	"github.com/cwithmichael/godo/pkg/models/mysql"
 	"database/sql"
 	"flag"
+	"github.com/cwithmichael/godo/pkg/models"
+	"github.com/cwithmichael/godo/pkg/models/mysql"
 	"html/template"
 	"log"
 	"net/http"

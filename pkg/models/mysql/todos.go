@@ -1,9 +1,9 @@
 package mysql
 
 import (
-	"github.com/cwithmichael/godo/pkg/models"
 	"database/sql"
 	"errors"
+	"github.com/cwithmichael/godo/pkg/models"
 )
 
 // TodoModel type which wraps a sql.DB connection pool.

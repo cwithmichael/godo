@@ -2,9 +2,9 @@ package main
 
 import (
 	"context"
-	"github.com/cwithmichael/godo/pkg/models"
 	"errors"
 	"fmt"
+	"github.com/cwithmichael/godo/pkg/models"
 	"github.com/justinas/nosurf"
 	"net/http"
 )
