@@ -1,10 +1,10 @@
 # Build
-FROM golang:1.16-alpine AS build
+FROM golang:1.18-alpine AS build
 WORKDIR /go/src/app
 
 COPY . .
 RUN go mod download
-
+RUN apk add git
 RUN go build -o /godo ./cmd/web 
 
 # Run
