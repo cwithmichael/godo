@@ -1,20 +1,15 @@
-CREATE DATABASE todos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-USE todos;
-
 CREATE TABLE user (
-                       id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                       id INTEGER NOT NULL PRIMARY KEY,
                        name VARCHAR(255) NOT NULL,
                        email VARCHAR(255) NOT NULL,
                        hashed_password CHAR(60) NOT NULL,
                        created DATETIME NOT NULL,
-                       active BOOLEAN NOT NULL DEFAULT TRUE
+                       active BOOLEAN NOT NULL DEFAULT TRUE,
+                       UNIQUE(email)
 );
 
-ALTER TABLE user ADD CONSTRAINT user_uc_email UNIQUE (email);
-
 CREATE TABLE todo (
-                          id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                          id INTEGER NOT NULL PRIMARY KEY,
                           title VARCHAR(100) NOT NULL,
                           content TEXT NOT NULL,
                           created DATETIME NOT NULL,
