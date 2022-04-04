@@ -19,12 +19,11 @@ The easiest way to run this is with `docker-compose`. Please see the [official d
     ```
     $ mkdir tls
     $ cd tls
-    #On Linux:
+    # On Linux:
     $ go run /usr/local/go/src/crypto/tls/generate_cert.go --rsa-bits=2048 --host=localhost
-    #On Mac:
-    $ /usr/local/Cellar/go/<version>/libexec/src/crypto/tls/generate_cert.go
-    #On Windows:
-    🤷
+    # On Mac (assuming you installed Go with brew):
+    $ go run /usr/local/Cellar/go/<version>/libexec/src/crypto/tls/generate_cert.go --rsa-bits=2048 --host=localhost
+    # On Windows: 🤷
     ```
 2. `docker-compose up`
 3. Go to http://localhost:4000 in your web browser
