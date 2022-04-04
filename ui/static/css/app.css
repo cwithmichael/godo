@@ -2,6 +2,13 @@ body {
     font-family: 'Raleway', sans-serif;
     background-color: white;
     height: 100%;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 h1 {
@@ -213,12 +220,6 @@ div.flash {
 
 
 .page-footer {
-    position: fixed;
-    height: 4rem;
-    margin-top: -4rem;
-    right: 0;
-    bottom: 0;
-    left: 0;
     background-color: #060D37;
 }
 
