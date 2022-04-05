@@ -4,27 +4,30 @@
 
 {{define "main"}}
     {{with .Todo}}
-        <h1 class="mainTitle">{{.Title}}</h1>
-        <div class="todoContainer">
-            <div class="todo">
-                <div class="todoContent">
-                    <p id="todoCreated">
+        <div class="container">
+            <div class="row"></div>
+            <div class="row">
+              <div class="col s8 offset-s2 m4 offset-m4">
+                <div class="card-content blue-text">
+                  <h2 class="center-align">{{.Title}}</h2>
+                  <p class="center-align">
                         <time> {{.Created | humanDate}}</time>
-                    </p>
-                    <p id="todoNotes">
+                  </p>
+                  <p class="center-align">
                         {{.Content}}
-                    </p>
-                    {{if .Completed}}
-                        <p class="todoCompleted">Completed!</p>
-                    {{else}}
-                        <p class="todoNotCompleted">Not completed yet</p>
-                    {{end}}
+                  </p>
+                  {{if .Completed}}
+                        <p class="todoCompleted center-align">Completed!</p>
+                  {{else}}
+                        <p class="todoNotCompleted center-align">Not completed yet</p>
+                  {{end}}
                 </div>
-                <div class="todoButtons">
-                    <a href="/todo/edit/{{.ID}}" class="btn purple white-text addTodoButton">Edit</a>
-                    <a href="/todo/delete/{{.ID}}" class="btn purple white-text addTodoButton">Delete</a>
+                <div class="center-align">
+                    <a href="/todo/edit/{{.ID}}" class="btn purple white-text addTodoButton center-align">Edit</a>
+                    <a href="/todo/delete/{{.ID}}" class="btn purple white-text addTodoButton center-align">Delete</a>
                 </div>
             </div>
+        </div>
         </div>
     {{end}}
 {{end}}
